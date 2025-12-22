@@ -20,6 +20,7 @@ using std::right;
 using std::setw;
 using std::fixed;
 using std::vector;
+using std::left;
 
 int main() {
 
@@ -58,20 +59,27 @@ int main() {
 	}
 	F.close();
 	ofstream G("rez.txt");
-	G << right << setw(15) << "Zodis" << right << setw(15) << "Kiekis" << right << setw(20) << "Eilutes" << endl;
+
+	G << left << setw(20) << "Zodis"
+		<< left << setw(10) << "Kiekis"
+		<< left << setw(30) << "Eilutes" << endl;
+
 	for (const auto& duomuo : zodziu_skaicius) {
 
 		if (duomuo.second > 1) {
 			const string& zodis = duomuo.first;
 			const vector<int>& eilutes = zodziu_eiluciu_nr[zodis];
-			G << right << setw(15) << duomuo.first << right << setw(15) << duomuo.second;
+
+			G << left << setw(20) << duomuo.first
+				<< left << setw(10) << duomuo.second;
+
 			for (int nr : eilutes) {
 				G << nr << " ";
 			}
 			G << endl;
-
 		}
 	}
+
 	G.close();
 
 	return 0;
